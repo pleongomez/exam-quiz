@@ -11,8 +11,7 @@ exam-quiz/
 ├── index.html        # Estructura HTML de la aplicación
 ├── app.js            # Lógica principal de la aplicación
 ├── style.css         # Estilos de la interfaz
-├── questions.json    # Banco de preguntas por defecto
-└── README.md         # Este fichero
+└── questions.json    # Banco de preguntas por defecto
 ```
 
 ---
