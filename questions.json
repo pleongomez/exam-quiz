@@ -1,0 +1,1301 @@
+[ 
+    {
+    "question_number": 1,
+    "question": "How should you print a debug message in your workflow?",
+    "answers": [
+      {"key": "A", "text": "echo \"::debug::Set variable myVariable to true\""},
+      {"key": "B", "text": "echo \"Set variable MyVariable to true\" >> $DEBUG_MESSAGE"},
+      {"key": "C", "text": "echo \"::add-mask::Set variable myVariable to true\""},
+      {"key": "D", "text": "echo \"debug_message=Set variable myVariable to true\" >> &GITHUB_OUTPUT"}
+    ],
+    "correct_answers": ["A"]
+  },
+  {
+    "question_number": 2,
+    "question": "As a developer, you are designing a workflow and need to communicate with the runner machine to set environment variables, output values used by other actions, add debug messages to the output logs, and other tasks. Which of the following options should you use?",
+    "answers": [
+      {"key": "A", "text": "composite run step"},
+      {"key": "B", "text": "enable debug logging"},
+      {"key": "C", "text": "self-hosted runners"},
+      {"key": "D", "text": "environment variables"},
+      {"key": "E", "text": "workflow commands"}
+    ],
+    "correct_answers": ["E"]
+  },
+  {
+    "question_number": 3,
+    "question": "When should you use the GITHUB_TOKEN in a workflow?",
+    "answers": [
+      {"key": "A", "text": "when you want to make authenticated calls to the GitHub API"},
+      {"key": "B", "text": "when you want to connect to the runner via SSH"},
+      {"key": "C", "text": "when you want to access repository-level secrets"},
+      {"key": "D", "text": "when you want to call an action from the marketplace"}
+    ],
+    "correct_answers": ["A"]
+  },
+  {
+    "question_number": 4,
+    "question": "In which of the following scenarios should you use self-hosted runners? (Each correct answer presents a complete solution. Choose two.)",
+    "answers": [
+      {"key": "A", "text": "when the workflow jobs must be run on Windows 10"},
+      {"key": "B", "text": "when jobs must run for longer than 6 hours"},
+      {"key": "C", "text": "when a workflow job needs to install software from the local network"},
+      {"key": "D", "text": "when GitHub Actions minutes must be used for the workflow runs"},
+      {"key": "E", "text": "when you want to use macOS runners"}
+    ],
+    "correct_answers": ["B", "C"]
+  },
+  {
+    "question_number": 5,
+    "question": "As a developer, you need to leverage Redis in your workflow. What is the best way to use Redis on a self-hosted Linux runner without affecting future workflow runs?",
+    "answers": [
+      {"key": "A", "text": "Install Redis on the hosted runner image and place it in a runner group. Specify label: in your job to target the runner group."},
+      {"key": "B", "text": "Set up Redis on a separate machine and reference that instance from your job."},
+      {"key": "C", "text": "Specify container: and services: in your job definition to leverage a Redis service container."},
+      {"key": "D", "text": "Add a run step to your workflow, which dynamically installs and configures Redis as part of your job."}
+    ],
+    "correct_answers": ["C"]
+  },
+  {
+    "question_number": 6,
+    "question": "You installed specific software on a Linux self-hosted runner. You have users with workflows that need to be able to select the runner based on the identified custom software. Which steps should you perform to prepare the runner and your users to run these workflows? (Each correct answer presents part of the solution. Choose two.)",
+    "answers": [
+      {"key": "A", "text": "Configure the webhook and network to enable GitHub to trigger workflow."},
+      {"key": "B", "text": "Create the group custom-software-on-linux and move the runner into the group."},
+      {"key": "C", "text": "Inform users to identify the runner with the labels custom-software and linux."},
+      {"key": "D", "text": "Add the label linux to the runner."},
+      {"key": "E", "text": "Inform users to identify the runner based on the group."},
+      {"key": "F", "text": "Add the label custom-software to the runner."}
+    ],
+    "correct_answers": ["C", "F"]
+  },
+  {
+    "question_number": 7,
+    "question": "You need to trigger a workflow using the GitHub API for activity that happens outside of GitHub. Which workflow event do you use?",
+    "answers": [
+      {"key": "A", "text": "workflow_run"},
+      {"key": "B", "text": "deployment"},
+      {"key": "C", "text": "check_suite"},
+      {"key": "D", "text": "repository_dispatch"}
+    ],
+    "correct_answers": ["D"]
+  },
+  {
+    "question_number": 8,
+    "question": "In which locations can actions be referenced by workflows? (Each correct answer presents a complete solution. Choose three.)",
+    "answers": [
+      {"key": "A", "text": "an .action extension file in the repository"},
+      {"key": "B", "text": "a published Docker container image on Docker Hub"},
+      {"key": "C", "text": "a public NPM registry"},
+      {"key": "D", "text": "the runs-on: keyword of a workflow file"},
+      {"key": "E", "text": "the repository’s Secrets settings page"},
+      {"key": "F", "text": "a separate public repository"},
+      {"key": "G", "text": "the same repository as the workflow"}
+    ],
+    "correct_answers": ["B", "F", "G"]
+  },
+  {
+    "question_number": 9,
+    "question": "Scheduled workflows run on the:",
+    "answers": [
+      {"key": "A", "text": "specified commit and branch from the workflow YAML file."},
+      {"key": "B", "text": "latest commit from the branch named schedule."},
+      {"key": "C", "text": "latest commit and branch on which the workflow was triggered."},
+      {"key": "D", "text": "latest commit from the branch named main."},
+      {"key": "E", "text": "latest commit on the default or base branch."}
+    ],
+    "correct_answers": ["E"]
+  },
+  {
+    "question_number": 10,
+    "question": "Custom environment variables can be defined at multiple levels within a workflow file including: (Each answer presents a complete solution. Choose three.)",
+    "answers": [
+      {"key": "A", "text": "top level."},
+      {"key": "B", "text": "step level."},
+      {"key": "C", "text": "default level."},
+      {"key": "D", "text": "runner level."},
+      {"key": "E", "text": "job level."},
+      {"key": "F", "text": "stage level."}
+    ],
+    "correct_answers": ["A", "B", "E"]
+  },
+  {
+    "question_number": 11,
+    "question": "You are a DevOps engineer working on deployment workflows. You need to execute the deploy job only if the current branch name is feature-branch. Which code snippet will help you to implement the conditional execution of the job?",
+    "answers": [
+      {"key": "A", "text": "jobs:\n  deploy:\n    if: github.ref_name == 'feature-branch'\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v3"},
+      {"key": "B", "text": "jobs:\n  deploy:\n    if: github.branch.name == 'feature-branch'\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v3"},
+      {"key": "C", "text": "jobs:\n  deploy:\n    if: github.ref.name == 'feature-branch'\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v3"},
+      {"key": "D", "text": "jobs:\n  deploy:\n    if: github.branch_name == 'feature-branch'\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v3"}
+    ],
+    "correct_answers": ["A"]
+  },
+  {
+    "question_number": 12,
+    "question": "What are the mandatory requirements for publishing GitHub Actions to the GitHub Marketplace? (Each correct answer presents part of the solution. Choose two.)",
+    "answers": [
+      {"key": "A", "text": "The action can be either in a public or private repository."},
+      {"key": "B", "text": "The action’s metadata file must be in the root directory of the repository."},
+      {"key": "C", "text": "The action’s name cannot match a user or organization on GitHub unless the user or organization owner is publishing the action."},
+      {"key": "D", "text": "The name should match with one of the existing GitHub Marketplace categories."},
+      {"key": "E", "text": "Each repository can contain a collection of actions as long as they are under the same Marketplace category."}
+    ],
+    "correct_answers": ["B", "C"]
+  },
+  {
+    "question_number": 13,
+    "question": "Which of the following is the proper syntax to specify a custom environment variable named MY_VARIABLE with the value my-value?",
+    "answers": [
+      {"key": "A", "text": "var:\n  MY_VARIABLE = my-value"},
+      {"key": "B", "text": "environment:\n  MY_VARIABLE = my-value"},
+      {"key": "C", "text": "var:\n  MY_VARIABLE: my-value"},
+      {"key": "D", "text": "env:\n  MY_VARIABLE = my-value"},
+      {"key": "E", "text": "environment:\n  MY_VARIABLE: my-value"},
+      {"key": "F", "text": "env:\n  MY_VARIABLE: my-value"}
+    ],
+    "correct_answers": ["F"]
+  },
+  {
+    "question_number": 14,
+    "question": "As a DevOps engineer, you need to define a deployment workflow that runs after the build workflow has successfully completed. Without modifying the build workflow, which trigger should you define in the deployment workflow?",
+    "answers": [
+      {"key": "A", "text": "repository_dispatch"},
+      {"key": "B", "text": "workflow_dispatch"},
+      {"key": "C", "text": "workflow_exec"},
+      {"key": "D", "text": "workflow_run"}
+    ],
+    "correct_answers": ["D"]
+  },
+  {
+    "question_number": 15,
+    "question": "Which step is using the dbserver environment variable correctly?",
+    "answers": [
+      {"key": "A", "text": "steps:\n  - name: Hello world\n    run: echo $dbserver\n    variables:\n      dbserver: orgserver1"},
+      {"key": "B", "text": "steps:\n  - name: Hello world\n    run: echo $dbserver\n    env:\n      - name: dbserver\n        value: orgserver1"},
+      {"key": "C", "text": "steps:\n  - name: Hello world\n    run: echo $dbserver\n    environment:\n      dbserver: orgserver1"},
+      {"key": "D", "text": "steps:\n  - name: Hello world\n    run: echo $dbserver\n    env:\n      dbserver: orgserver1"}
+    ],
+    "correct_answers": ["D"]
+  },
+  {
+    "question_number": 16,
+    "question": "In which scenarios could the GITHUB_TOKEN be used? (Each correct answer presents a complete solution. Choose two.)",
+    "answers": [
+      {"key": "A", "text": "to create a repository secret"},
+      {"key": "B", "text": "to add a member to an organization"},
+      {"key": "C", "text": "to read from the file system on the runner"},
+      {"key": "D", "text": "to publish to GitHub Packages"},
+      {"key": "E", "text": "to create issues in the repo"},
+      {"key": "F", "text": "to leverage a self-hosted runner"}
+    ],
+    "correct_answers": ["D", "E"]
+  },
+  {
+    "question_number": 17,
+    "question": "As a developer, which of the following snippets will enable you to run the commands npm ci and npm run build as part of a workflow?",
+    "answers": [
+      {"key": "A", "text": "- run: | npm ci npm run build"},
+      {"key": "B", "text": "- shell: npm ci npm run build"},
+      {"key": "C", "text": "- run: | npm ci npm run build shell: nodejs"},
+      {"key": "D", "text": "- run: npm ci npm run build"},
+      {"key": "E", "text": "- shell: | npm ci npm run build"}
+    ],
+    "correct_answers": ["A"]
+  },
+  {
+    "question_number": 18,
+    "question": "What is the smallest scope for an environment variable?",
+    "answers": [
+      {"key": "A", "text": "the workflow settings"},
+      {"key": "B", "text": "the workflow env mapping"},
+      {"key": "C", "text": "a job"},
+      {"key": "D", "text": "a step"}
+    ],
+    "correct_answers": ["D"]
+  },
+  {
+    "question_number": 19,
+    "question": "Which workflow event is used to manually trigger a workflow run?",
+    "answers": [
+      {"key": "A", "text": "status"},
+      {"key": "B", "text": "workflow_dispatch"},
+      {"key": "C", "text": "workflow_run"},
+      {"key": "D", "text": "create"}
+    ],
+    "correct_answers": ["B"]
+  },
+  {
+    "question_number": 20,
+    "question": "Where should workflow files be stored to be triggered by events in a repository?",
+    "answers": [
+      {"key": "A", "text": "anywhere"},
+      {"key": "B", "text": "Nowhere; they must be attached to an action in the GitHub user interface."},
+      {"key": "C", "text": ".github/workflows/"},
+      {"key": "D", "text": ".workflows/"},
+      {"key": "E", "text": ".github/actions/"}
+    ],
+    "correct_answers": ["C"]
+  },
+  {
+    "question_number": 21,
+    "question": "Your organization is managing secrets using GitHub encrypted secrets, including a secret named SuperSecret. As a developer, you need to create a version of that secret that contains a different value for use in a workflow that is scoped to a specific repository named MyRepo. How should you store the secret to access your specific version within your workflow?",
+    "answers": [
+      {"key": "A", "text": "Create MyRepo_SuperSecret in GitHub encrypted secrets to specify the scope to MyRepo."},
+      {"key": "B", "text": "Create a duplicate entry for SuperSecret in the encrypted secret store and specify MyRepo as the scope."},
+      {"key": "C", "text": "Create a file with the SuperSecret information in the .github/secrets folder in MyRepo."},
+      {"key": "D", "text": "Create and access SuperSecret from the secrets store in MyRepo."}
+    ],
+    "correct_answers": ["D"]
+  },
+  {
+    "question_number": 22,
+    "question": "As a developer, one of your workflows will require XCode version 11.2 hosted on macOS Catalina (i.e., v10.15). You’ve already created and configured a self-hosted runner to conform to those requirements and registered it with your organization. What else should you do to ensure that the workflow accesses the correct runner instance? (Each answer presents a complete solution. Choose three.)",
+    "answers": [
+      {"key": "A", "text": "Add your runner to the appropriate runner groups."},
+      {"key": "B", "text": "In the workflow, specify: runs-on: [ ${{groups.macos-10.15}}, ${{groups.xcode-11.2}} ]."},
+      {"key": "C", "text": "Create custom runner labels for macos-10.15 and xcode-11.2."},
+      {"key": "D", "text": "Create runner groups named macos-10.15 and xcode-11.2."},
+      {"key": "E", "text": "In the workflow, specify: runs-on: [self-hosted, macos-10.15, xcode-11.2]."},
+      {"key": "F", "text": "Assign the custom labels to the self-hosted runner."}
+    ],
+    "correct_answers": ["A", "C", "F"]
+  },
+  {
+    "question_number": 23,
+    "question": "Which default GitHub environment variable indicates the owner and repository name?",
+    "answers": [
+      {"key": "A", "text": "GITHUB_REPOSITORY"},
+      {"key": "B", "text": "GITHUB_WORKFLOW_REPO"},
+      {"key": "C", "text": "ENV_REPOSITORY"},
+      {"key": "D", "text": "REPOSITORY_NAME"}
+    ],
+    "correct_answers": ["A"]
+  },
+  {
+    "question_number": 24,
+    "question": "You are a DevOps engineer in ABC Corp. You need to schedule your deployment workflow twice a week at 7:45 UTC every Wednesday and Saturday. What is the appropriate YAML structure?",
+    "answers": [
+      {"key": "A", "text": "on: cron: '45 7 * * 3,6'"},
+      {"key": "B", "text": "on: cron: - schedule: '45 7 * * 3,6'"},
+      {"key": "C", "text": "on: schedule: - cron: '45 7 * * 3,6'"},
+      {"key": "D", "text": "on: schedule: '45 7 * * 3,6'"}
+    ],
+    "correct_answers": ["C"]
+  },
+  {
+    "question_number": 25,
+    "question": "You need to create new workflows to deploy to an unfamiliar cloud provider. What is the fastest and safest way to begin?",
+    "answers": [
+      {"key": "A", "text": "Create a custom action to wrap the cloud provider's CLI."},
+      {"key": "B", "text": "Search GitHub Marketplace for verified actions published by the cloud provider."},
+      {"key": "C", "text": "Use the actions/jenkins-plugin action to utilize an existing Jenkins plugin for the cloud provider."},
+      {"key": "D", "text": "Search GitHub Marketplace for actions created by GitHub."},
+      {"key": "E", "text": "Download the CLI for the cloud provider and review the associated documentation."}
+    ],
+    "correct_answers": ["B"]
+  },
+  {
+    "question_number": 26,
+    "question": "Which scopes are available to define custom environment variables within a workflow file? (Choose three.)",
+    "answers": [
+      {"key": "A", "text": "the entire workflow, by using env at the top level of the workflow file"},
+      {"key": "B", "text": "all jobs being run on a single Actions runner, by using runner.env at the top of the workflow file"},
+      {"key": "C", "text": "the entire stage, by using env at the top of the defined build stage"},
+      {"key": "D", "text": "within the run attribute of a job step"},
+      {"key": "E", "text": "the contents of a job within a workflow, by using jobs.env"},
+      {"key": "F", "text": "a specific step within a job, by using jobs..steps[*].env"}
+    ],
+    "correct_answers": ["A", "E", "F"]
+  },
+  {
+    "question_number": 27,
+    "question": "Which of the following commands will set the $FOO environment variable within a script, so that it may be used in subsequent workflow job steps?",
+    "answers": [
+      {"key": "A", "text": "run: echo \"::set-env name=FOO::bar\""},
+      {"key": "B", "text": "run: echo \"FOO=bar\" >> $GITHUB_ENV"},
+      {"key": "C", "text": "run: echo ${{ $FOO=bar }}"},
+      {"key": "D", "text": "run: export FOO=bar"}
+    ],
+    "correct_answers": ["B"]
+  },
+  {
+    "question_number": 28,
+    "question": "Which of the following scenarios requires a developer to explicitly use the GITHUB_TOKEN or github.token secret within a workflow? (Choose two.)",
+    "answers": [
+      {"key": "A", "text": "passing the GITHUB_TOKEN secret to an action that requires a token as an input"},
+      {"key": "B", "text": "making an authenticated GitHub API request"},
+      {"key": "C", "text": "checking out source code with the actions/checkout@v3 action"},
+      {"key": "D", "text": "assigning non-default permissions to the GITHUB_TOKEN"}
+    ],
+    "correct_answers": ["A", "B"]
+  },
+  {
+    "question_number": 29,
+    "question": "As a developer, you have a 10-MB data set that is required in a specific workflow.\n\nWhich three steps should you perform so the dataset is stored encrypted and can be decrypted during the workflow? Each correct answer presents part of the solution.\n\nNOTE: Each correct answer is worth one point.",
+    "answers": [
+      {"key": "A", "text": "Store the encryption keys in a GitHub encrypted secret."},
+      {"key": "B", "text": "Encrypt the dataset."},
+      {"key": "C", "text": "Leverage the actions/download-secret action in the workflow."},
+      {"key": "D", "text": "Store the dataset in a GitHub encrypted secret."},
+      {"key": "E", "text": "Create a GitHub encrypted secret with the Large object option selected and upload the dataset."},
+      {"key": "F", "text": "Compress the dataset."},
+      {"key": "G", "text": "Commit the encrypted dataset to the same repository as the workflow."}
+    ],
+    "correct_answers": ["A", "B", "G"]
+  },
+  {
+    "question_number": 30,
+    "question": "For which type of GitHub Actions workflows should you use a self-hosted runner?",
+    "answers": [
+      {"key": "A", "text": "workflows that require access to private internal network resources"},
+      {"key": "B", "text": "workflows that have no specific environment configurations and must be triggered on a GitHub-hosted infrastructure"},
+      {"key": "C", "text": "short-lived workflows that do NOT require custom dependencies"},
+      {"key": "D", "text": "workflows that require the latest operating system and preinstalled software versions"}
+    ],
+    "correct_answers": ["A"]
+  },
+  {
+    "question_number": 31,
+    "question": "Which of the following scenarios would require the use of self-hosted runners instead of GitHub-hosted runners?",
+    "answers": [
+      {"key": "A", "text": "running more than the three concurrent workflows supported by GitHub-hosted runners"},
+      {"key": "B", "text": "performing builds on macOS"},
+      {"key": "C", "text": "exceeding 50,000 monthly minutes of build time"},
+      {"key": "D", "text": "using specialized hardware configurations required for workflows"},
+      {"key": "E", "text": "using Docker containers as part of the workflow"}
+    ],
+    "correct_answers": ["D"]
+  },
+  {
+    "question_number": 32,
+    "question": "You are developing a GitHub Actions workflow that will build a .NET app.\n\nYou need to provide the workflow with access to a sensitive enterprise license. The solution must ensure that the license is NOT exposed publicly or hardcoded.\n\nWhat should you do?",
+    "answers": [
+      {"key": "A", "text": "Use a GitHub-hosted Windows runner and expose the license via a public URL downloaded by the workflow at runtime."},
+      {"key": "B", "text": "Embed the license into an encrypted ZIP file stored in a repository and decrypt the file at runtime by using a hardcoded passphrase."},
+      {"key": "C", "text": "Use GitHub Enterprise Managed User (OIDC) in a GitHub-hosted or self-hosted Windows runner to fetch the license from a third-party vault or secrets manager at runtime."},
+      {"key": "D", "text": "Use a GitHub-hosted Ubuntu runner and store the license in a Base64-encoded repository."}
+    ],
+    "correct_answers": ["C"]
+  },
+  {
+    "question_number": 33,
+    "question": "Which YAML snippet triggers a GitHub Actions workflow for both push and pull request events?",
+    "answers": [
+      {"key": "A", "text": "on:\n  push:\n    branches:\n      - dev\n  pull_request:\n    branches:\n      - main"},
+      {"key": "B", "text": "on:\n  push:\n    branches:\n      - main"},
+      {"key": "C", "text": "on:\n  push:\n    branches:\n      - main\n  push:\n    branches:\n      - dev"},
+      {"key": "D", "text": "on:\n  push:\n    branches:\n      - main\n  pull_request:\n    branches:\n      - main"}
+    ],
+    "correct_answers": ["D"]
+  },
+  {
+    "question_number": 34,
+    "question": "You need to stop a GitHub Actions workflow from running. The solution must retain the configuration and execution history of the workflow.\n\nWhat should you do?",
+    "answers": [
+      {"key": "A", "text": "Delete the workflow YAML file from the repository."},
+      {"key": "B", "text": "Select Actions and disable the workflow."},
+      {"key": "C", "text": "Rename the workflow YAML file."},
+      {"key": "D", "text": "Archive the workflow in a new branch."}
+    ],
+    "correct_answers": ["B"]
+  },
+  {
+    "question_number": 35,
+    "question": "You need to publish a release that includes assets in GitHub Actions. The solution must meet GitHub support requirements.\n\nWhat should you do?",
+    "answers": [
+      {"key": "A", "text": "Run actions/upload-artifact followed by actions/create-release, and then actions/upload-release-asset."},
+      {"key": "B", "text": "Run gh release create in a script step to create a release and attach the assets after tagging a commit."},
+      {"key": "C", "text": "Use a GitHub Marketplace action that creates a release and uploads the assets in a single step."},
+      {"key": "D", "text": "Run git push --tags to automatically trigger GitHub to create a release that includes all the project files."}
+    ],
+    "correct_answers": ["B"]
+  },
+  {
+    "question_number": 36,
+    "question": "As a developer, you want to run a workflow from the Actions tab in GitHub. Which YAML snippet should you use to match the interface in this image?",
+    "question_image": "https://exam-media.s3.ap-south-1.amazonaws.com/microsoft/gh-200/1/36/d/0.png",
+    "answers": [
+      {"key": "A", "text": "on:\n  workflow_run:\n    inputs:\n      test_suite:\n        description: Test suite\n        type: string\n        options:\n          - functional\n          - regression"},
+      {"key": "B", "text": "on:\n  workflow_dispatch:\n    inputs:\n      test_suite:\n        description: Test suite\n        type: choice\n        options:\n          - functional\n          - regression"},
+      {"key": "C", "text": "on:\n  workflow_run:\n    inputs:\n      test_suite:\n        description: Test suite\n        type: choice\n        options:\n          - functional\n          - regression"},
+      {"key": "D", "text": "on:\n  workflow_dispatch:\n    inputs:\n      test_suite:\n        description: Test suite\n        type: choice\n        value: functional\n        options:\n          - regression"}
+    ],
+    "correct_answers": ["B"]
+  },
+  {
+    "question_number": 37,
+    "question": "By default, which workflows can use an action stored in internal repository? (Each answer presents a complete solution. Choose two.)",
+    "answers": [
+      {"key": "A", "text": "selected public repositories outside of the enterprise"},
+      {"key": "B", "text": "internal repositories owned by the same organization as the enterprise"},
+      {"key": "C", "text": "public repositories owned by the same organization as the enterprise"},
+      {"key": "D", "text": "private repositories owned by an organization of the enterprise"}
+    ],
+    "correct_answers": ["B", "D"]
+  },
+   {
+    "question_number": 38,
+    "question": "Which default environment variable specifies the branch or tag that triggered a workflow?",
+    "answers": [
+      {"key": "A", "text": "GITHUB_REF"},
+      {"key": "B", "text": "GITHUB_BRANCH"},
+      {"key": "C", "text": "ENV_BRANCH"},
+      {"key": "D", "text": "GITHUB_TAG"}
+    ],
+    "correct_answers": ["A"]
+  },
+   {
+    "question_number": 39,
+    "question": "As a developer, you need to add the correct syntax to allow the following workflow file to be triggered by multiple types of events. Which two code blocks should you add starting at line 5? (Each correct answer presents a complete solution. Choose two.)",
+    "question_image": "https://exam-media.s3.ap-south-1.amazonaws.com/microsoft/gh-200/2/3/d/0.png",
+    "answers": [
+      {"key": "A", "text": "on: [push, pull_request]"},
+      {"key": "B", "text": "on:\n  branches:\n    - 'main'\n    - 'dev'"},
+      {"key": "C", "text": "on:\n  schedule:\n    - cron: '*/15 * * * *'\n  initiate:\n    - 'main'"},
+      {"key": "D", "text": "on: [push, commit]"},
+      {"key": "E", "text": "on:\n  push:\n    branches:\n      - main\n  release:\n    types:\n      - created"},
+      {"key": "F", "text": "on:\n  env:\n    - 'prod'\n    - 'qa'\n    - 'test'"}
+    ],
+    "correct_answers": ["A", "E"]
+  },
+  {
+    "question_number": 40,
+    "question": "You need to make a script to retrieve workflow run logs via the API. Which is the correct API to download a workflow run log?",
+    "answers": [
+      {"key": "A", "text": "POST /repos/:owner/:repo/actions/runs/:run_id/logs"},
+      {"key": "B", "text": "GET /repos/:owner/:repo/actions/runs/:run_id/logs"},
+      {"key": "C", "text": "POST /repos/:owner/:repo/actions/runs/:run_id"},
+      {"key": "D", "text": "GET /repos/:owner/:repo/actions/artifacts/logs"}
+    ],
+    "correct_answers": ["B"]
+  },
+  {
+    "question_number": 41,
+    "question": "You are reaching your organization’s storage limit for GitHub artifacts and packages. What should you do to prevent the storage limit from being reached? (Each correct answer presents a complete solution. Choose two.)",
+    "answers": [
+      {"key": "A", "text": "Use self-hosted runners for all workflow runs."},
+      {"key": "B", "text": "Delete artifacts from the repositories manually."},
+      {"key": "C", "text": "Configure the artifact and log retention period."},
+      {"key": "D", "text": "Disable branch protections in the repository."},
+      {"key": "E", "text": "Configure the repo to use Git Large File Storage."}
+    ],
+    "correct_answers": ["B", "C"]
+  },
+  {
+    "question_number": 42,
+    "question": "While awaiting approval, how many days can a workflow be in the “Waiting” state before it automatically fails?",
+    "answers": [
+      {"key": "A", "text": "30 days"},
+      {"key": "B", "text": "60 days"},
+      {"key": "C", "text": "14 days"},
+      {"key": "D", "text": "7 days"}
+    ],
+    "correct_answers": ["A"]
+  },
+   {
+    "question_number": 43,
+    "question": "What is the proper syntax to reference the system-provided run number variable?",
+    "answers": [
+      {"key": "A", "text": "${{var.GITHUB_RUN_NUMBER}}"},
+      {"key": "B", "text": "${{env.GITHUB_RUN_NUMBER}}"},
+      {"key": "C", "text": "$GITHUB_RUN_NUMBER"},
+      {"key": "D", "text": "${{GITHUB_RUN_NUMBER}}"},
+      {"key": "E", "text": "$github.run_number"}
+    ],
+    "correct_answers": ["B"]
+  },
+  {
+    "question_number": 44,
+    "question": "How can a workflow deploy mitigate the risk of multiple workflow runs that are deploying to a single cloud environment simultaneously? (Each correct answer presents part of the solution. Choose two.)",
+    "answers": [
+      {"key": "A", "text": "Reference the mutex in the task performing the deployment."},
+      {"key": "B", "text": "Set the concurrency in the deploymentjob to 1."},
+      {"key": "C", "text": "Specify a target environment in the deploymentjob."},
+      {"key": "D", "text": "Specify a concurrency scope in the workflow."},
+      {"key": "E", "text": "Configure the mutex setting in the environment."},
+      {"key": "F", "text": "Pass the mutex into the deployment job."}
+    ],
+    "correct_answers": ["C", "D"]
+  },
+  {
+    "question_number": 45,
+    "question": "Which default GitHub environment variable indicates the name of the person or app that initiated a workflow?",
+    "answers": [
+      {"key": "A", "text": "GITHUB_ACTOR"},
+      {"key": "B", "text": "GITHUB USER"},
+      {"key": "C", "text": "ENV_ACTOR"},
+      {"key": "D", "text": "GITHUB_WORKFLOW_ACTOR"}
+    ],
+    "correct_answers": ["A"]
+  },
+  {
+    "question_number": 46,
+    "question": "As a developer, you are configuring GitHub Actions to deploy VMs to production. A member of the VMOps team must provide approval before the deployment occurs. Which of the following steps should you take? (Each correct answer presents part of the solution. Choose two.)",
+    "answers": [
+      {"key": "A", "text": "Navigate to the organization settings and create a Production environment with the VMOps team as a required reviewer."},
+      {"key": "B", "text": "Specify the environment named Production in the workflow jobs that deploy to the VMs."},
+      {"key": "C", "text": "Navigate to the repository settings and create a Production environment with the VMOps team as a required reviewer."},
+      {"key": "D", "text": "Add the VMs to the environment."},
+      {"key": "E", "text": "Specify the VMOps team as the owner of the environment."}
+    ],
+    "correct_answers": ["B", "C"]
+  },
+  {
+    "question_number": 47,
+    "question": "Which of the following is the lowest repository permission you need to have for downloading workflow artifacts?",
+    "answers": [
+      {"key": "A", "text": "Triage"},
+      {"key": "B", "text": "Admin"},
+      {"key": "C", "text": "Maintain"},
+      {"key": "D", "text": "Write"},
+      {"key": "E", "text": "Read"}
+    ],
+    "correct_answers": ["E"]
+  },
+  {
+    "question_number": 48,
+    "question": "Which statement is true regarding the ability to delete a workflow run?",
+    "answers": [
+      {"key": "A", "text": "Admin access is required to delete a workflow run."},
+      {"key": "B", "text": "Pending workflow runs may be deleted."},
+      {"key": "C", "text": "Completed workflow runs may be deleted."},
+      {"key": "D", "text": "Workflow runs must be older than 30 days to be deleted."}
+    ],
+    "correct_answers": ["C"]
+  },
+  {
+    "question_number": 49,
+    "question": "As a developer, how should you enable step debug logging for a workflow?",
+    "answers": [
+      {"key": "A", "text": "Include the following code block in your workflow:env:ACTIONS_STEP_DEBUG: true"},
+      {"key": "B", "text": "Use the --actions-step-debug flag when calling the workflow."},
+      {"key": "C", "text": "Include the following code block in your workflow:defaults:ACTIONS_STEP_DEBUG: true"},
+      {"key": "D", "text": "Set the ACTIONS_STEP_DEBUG secret or variable at the repository level to true."}
+    ],
+    "correct_answers": ["D"]
+  },
+  {
+    "question_number": 50,
+    "question": "Which command can you include in your workflow file to set the output parameter for an action?",
+    "answers": [
+      {"key": "A", "text": "echo \"action_color=purple\" >> $GITHUB_ENV"},
+      {"key": "B", "text": "echo \"::debug::action_color=purple\""},
+      {"key": "C", "text": "echo \"::add-mask::$ACTI0N_C0L0R\""},
+      {"key": "D", "text": "echo \"action_color=purple\" >> $GITHUB_OUTPUT"}
+    ],
+    "correct_answers": ["D"]
+  },
+  {
+    "question_number": 51,
+    "question": "As a DevOps engineer, you need to execute a deployment to different environments like development and testing based on the labels added to a pull request. The deployment should use the releases branch and trigger only when there is a change in the files under ‘apps’ folder. Which code block should be used to define the deployment workflow trigger?",
+    "answers": [
+      {"key": "A", "text": "on:\n  pull_request_label:\n    branches:\n      - 'releases'\n    paths:\n      - 'apps/**'"},
+      {"key": "B", "text": "on:\n  pull_request:\n    types: [labeled]\n    branches:\n      - 'releases/**'\n    paths:\n      - 'apps'"},
+      {"key": "C", "text": "on:\n  pull_request:\n    types: [labeled]\n    branches:\n      - 'releases'\n    paths:\n      - 'apps/**'"},
+      {"key": "D", "text": "on:\n  pull_request_review:\n    types: [labeled]\n    branches:\n      - 'releases'\n    paths:\n      - 'apps/**'"}
+    ],
+    "correct_answers": ["C"]
+  },
+  {
+    "question_number": 52,
+    "question": "As a DevOps engineer, you are developing workflows to build an application. You have a requirement to create the build targeting multiple node versions. Which code block should you use to define the workflow?",
+    "answers": [
+      {"key": "A", "text": "jobs:\n  build-app:\n    strategy:\n      matrix:\n        node-ver: [10, 12, 14]\n    steps:\n      - uses: actions/setup-node@v3\n        with:\n          node-version: ${{ matrix.node-ver }}"},
+      {"key": "B", "text": "jobs:\n  build-app:\n    matrix-strategy:\n      node-ver: [10, 12, 14]\n    steps:\n      - uses: actions/setup-node@v3\n        with:\n          node-version: ${{ matrix-strategy.node-ver }}"},
+      {"key": "C", "text": "jobs:\n  build-app:\n    matrix:\n      strategy:\n        node-ver: [10, 12, 14]\n    steps:\n      - uses: actions/setup-node@v3\n        with:\n          node-version: ${{ matrix.node-ver }}"},
+      {"key": "D", "text": "jobs:\n  build-app:\n    strategy:\n      matrix:\n        node-ver: [10, 12, 14]\n    steps:\n      - uses: actions/setup-node@v3\n        with:\n          node-version: ${{ strategy.node-ver }}"}
+    ],
+    "correct_answers": ["A"]
+  },
+  {
+    "question_number": 53,
+    "question": "Disabling a workflow allows you to stop a workflow from being triggered without having to delete the file from the repo. In which scenarios would temporarily disabling a workflow be most useful? (Each correct answer presents a complete solution. Choose two.)",
+    "answers": [
+      {"key": "A", "text": "A runner needs to have diagnostic logging enabled."},
+      {"key": "B", "text": "A workflow error produces too many, or wrong, requests, impacting external services negatively."},
+      {"key": "C", "text": "A workflow is configured to run on self-hosted runners."},
+      {"key": "D", "text": "A workflow sends requests to a service that is down."},
+      {"key": "E", "text": "A workflow needs to be changed from running on a schedule to a manual trigger."}
+    ],
+    "correct_answers": ["B", "D"]
+  },
+  {
+    "question_number": 54,
+    "question": "Which of the following is a valid reusable workflow reference?",
+    "answers": [
+      {"key": "A", "text": "uses: octo-org/another-repo/workflow.yml@v1"},
+      {"key": "B", "text": "uses: octo-org/another-repo/.github/workflows/workflow.yml@v1"},
+      {"key": "C", "text": "uses: another-repo/.github/workflows/workflow.yml@v1"},
+      {"key": "D", "text": "uses: another-repo/workflow.yml@v1"}
+    ],
+    "correct_answers": ["B"]
+  },
+  {
+    "question_number": 55,
+    "question": "What are the two ways to pass data between jobs? (Each correct answer presents part of the solution. Choose two.)",
+    "answers": [
+      {"key": "A", "text": "Use data storage."},
+      {"key": "B", "text": "Use the copy action with cache parameter to cache the data."},
+      {"key": "C", "text": "Use the copy action with restore parameter to restore the data from the cache."},
+      {"key": "D", "text": "Use artifact storage."},
+      {"key": "E", "text": "Use job outputs."},
+      {"key": "F", "text": "Use the copy action to save the data that should be passed in the artifacts folder."}
+    ],
+    "correct_answers": ["D", "E"]
+  },
+  {
+    "question_number": 56,
+    "question": "As a developer, you are optimizing a GitHub workflow that uses and produces many different files. You need to determine when to use caching versus workflow artifacts. Which two statements are true? (Each correct answer presents part of the solution. Choose two.)",
+    "answers": [
+      {"key": "A", "text": "Use artifacts to access the GitHub Package Registry and download a package for a workflow."},
+      {"key": "B", "text": "Use caching when reusing files that change rarely between jobs or workflow runs."},
+      {"key": "C", "text": "Use caching to store cache entries for up to 30 days between accesses."},
+      {"key": "D", "text": "Use artifacts when referencing files produced by a job after a workflow has ended."}
+    ],
+    "correct_answers": ["B", "D"]
+  },
+ {
+    "question_number": 57,
+    "question": "Which syntax correctly accesses a job output (output1) of an upstream job (job1) from a dependent job within a workflow?",
+    "answers": [
+      {"key": "A", "text": "${{needs.job1.outputs.output1}}"},
+      {"key": "B", "text": "${{needs.job1.output1}}"},
+      {"key": "C", "text": "${{depends.job1.output1}}"},
+      {"key": "D", "text": "${{job1.outputs.output1}}"}
+    ],
+    "correct_answers": ["A"]
+  },
+  {
+    "question_number": 58,
+    "question": "What is the right method to ensure users approve a workflow before the next step proceeds?",
+    "answers": [
+      {"key": "A", "text": "creating a branch protection rule and only allow certain users access"},
+      {"key": "B", "text": "granting users workflow approval permissions"},
+      {"key": "C", "text": "adding users as required reviewers for an environment"},
+      {"key": "D", "text": "granting users repository approval permission"}
+    ],
+    "correct_answers": ["C"]
+  },
+  {
+    "question_number": 59,
+    "question": "As a developer, you need to integrate a GitHub Actions workflow with a third-party code quality provider that uses the Checks API. How should you trigger a follow-up workflow?",
+    "answers": [
+      {"key": "A", "text": "Add the workflow_run webhook event as a trigger for the workflow for the code quality integration name"},
+      {"key": "B", "text": "Add the check_run webhook event as a trigger for the workflow when the code quality integration is completed"},
+      {"key": "C", "text": "Add the pull_request webhook event as a trigger for the workflow when the code quality integration is synchronized"},
+      {"key": "D", "text": "Add the deployment webhook event as a trigger for the workflow when the code quality integration is completed"}
+    ],
+    "correct_answers": ["B"]
+  },
+  {
+    "question_number": 60,
+    "question": "You are a developer working on developing reusable workflows for your organization. What keyword should be included as part of the reusable workflow event triggers?",
+    "answers": [
+      {"key": "A", "text": "pull_request"},
+      {"key": "B", "text": "check_run"},
+      {"key": "C", "text": "workflow_call"},
+      {"key": "D", "text": "workflow_run"}
+    ],
+    "correct_answers": ["C"]
+  },
+  {
+    "question_number": 61,
+    "question": "You need to create a reusable GitHub Actions workflow template named ci.yml. The solution must ensure that ci.yml appears on the New workflow interface of GitHub Actions.\n\nWhere should you store ci.yml?",
+    "answers": [
+      {"key": "A", "text": ".github/workflow-templates"},
+      {"key": "B", "text": ".github/templates"},
+      {"key": "C", "text": "the root directory of each repository"},
+      {"key": "D", "text": ".github/workflows"}
+    ],
+    "correct_answers": ["A"]
+  },
+  {
+    "question_number": 62,
+    "question": "What will the output be for the following event trigger block in a workflow?",
+    "question_image": "https://exam-media.s3.ap-south-1.amazonaws.com/microsoft/gh-200/2/26/d/0.png",
+    "answers": [
+      {"key": "A", "text": "It throws a workflow syntax error, pointing to the types definition in issue_comment event."},
+      {"key": "B", "text": "It runs the workflow when an issue or issue comment in the workflow's repository is created or modified."},
+      {"key": "C", "text": "It runs the workflow when an issue is edited or when an issue comment created."},
+      {"key": "D", "text": "It runs the workflow when an issue is created or edited, or when an issue or pull request comment is created."},
+      {"key": "E", "text": "It throws a workflow syntax error, pointing to the types definition in issues event."}
+    ],
+    "correct_answers": ["D"]
+  },
+  {
+    "question_number": 63,
+    "question": "You have a GitHub Actions workflow YAML file that contains the following lines.\n Which two statements accurately describe the behavior of the workflow? Each correct answer presents a complete solution.\n NOTE: Each correct selection is worth one point.",
+    "question_image": "https://exam-media.s3.ap-south-1.amazonaws.com/microsoft/gh-200/2/27/d/0.png",
+    "answers": [
+      {"key": "A", "text": "The workflow will publish a package to GitHub Packages."},
+      {"key": "B", "text": "The workflow will publish a package to a Node Package Manager (npm) registry."},
+      {"key": "C", "text": "The publish-npm workflow job will run only after the build job passes."},
+      {"key": "D", "text": "The file is using a matrix strategy."}
+    ],
+    "correct_answers": ["B", "C"]
+  },
+  {
+    "question_number": 64,
+    "question": "What is the simplest action type to run a shell script?",
+    "answers": [
+      {"key": "A", "text": "Bash script action"},
+      {"key": "B", "text": "Composite action"},
+      {"key": "C", "text": "JavaScript action"},
+      {"key": "D", "text": "Docker container action"}
+    ],
+    "correct_answers": ["B"]
+  },
+  {
+    "question_number": 65,
+    "question": "What is the most suitable action type for a custom action written in TypeScript?",
+    "answers": [
+      {"key": "A", "text": "Docker container action"},
+      {"key": "B", "text": "Bash script action"},
+      {"key": "C", "text": "composite run step"},
+      {"key": "D", "text": "JavaScript action"}
+    ],
+    "correct_answers": ["D"]
+  },
+  {
+    "question_number": 66,
+    "question": "You are a DevOps engineer working on custom Actions development. You need to handle the errors or exceptions as part of the JavaScript based action code. What should be added to the following code block to handle errors?\n const core = require('@actions/core');\ntry {\n  // action code\n} catch (error) {\n  << insert snippet here >>\n}",
+    "answers": [
+      {"key": "A", "text": "core.setException(error.message);"},
+      {"key": "B", "text": "action.setError(error.message);"},
+      {"key": "C", "text": "core.setFailed(error.message);"},
+      {"key": "D", "text": "core.action.setException(error.message);"}
+    ],
+    "correct_answers": ["C"]
+  },
+  {
+    "question_number": 67,
+    "question": "Which workflow commands send information from the runner? (Each correct answer presents a complete solution. Choose two.)",
+    "answers": [
+      {"key": "A", "text": "reading from environment variables"},
+      {"key": "B", "text": "setting a debug message"},
+      {"key": "C", "text": "populating variables in a Dockerfile"},
+      {"key": "D", "text": "setting output parameters"}
+    ],
+    "correct_answers": ["B", "D"]
+  },
+  {
+    "question_number": 68,
+    "question": "Which of the following is the most common way to target a specific major release version?",
+    "answers": [
+      {"key": "A", "text": "steps:\n  - uses: actions/checkout@v3"},
+      {"key": "B", "text": "steps:\n  - uses: actions/checkout"},
+      {"key": "C", "text": "steps:\n  - uses: actions/checkout@U1673995124"},
+      {"key": "D", "text": "steps:\n  - uses: actions/checkout@ac593985615ec2ede58e132d2e21d2b1cbd6127c"}
+    ],
+    "correct_answers": ["A"]
+  },
+  {
+    "question_number": 69,
+    "question": "You are a DevOps engineer working on a custom action. You want to conditionally run a script at the start of the action, before the main entrypoint. Which code block should be used to define the metadata file for your custom action?",
+    "answers": [
+      {"key": "A", "text": "runs: using: 'nodel6' pre-if: github.event_name == 'push' then 'start.js' main: 'index.js'"},
+      {"key": "B", "text": "runs: using: 'nodel6' pre: 'start.js' pre-if: github.event_name == 'push' main: 'index.js'"},
+      {"key": "C", "text": "runs: using: 'nodel6' start: 'start.js' start-if: github.event_name == 'push' main: 'index.js'"},
+      {"key": "D", "text": "runs: using: 'nodel6' before: 'start.js' before-if: github.event_name == 'push' main: 'index.js'"}
+    ],
+    "correct_answers": ["B"]
+  },
+  {
+    "question_number": 70,
+    "question": "As a developer, how can you identify a JavaScript action on GitHub?",
+    "answers": [
+      {"key": "A", "text": "The action’s repository includes a js.yml file in the .github/workflows directory."},
+      {"key": "B", "text": "The action’s repository name includes the keyword “JavaScript.”"},
+      {"key": "C", "text": "The action.yml metadata file has the runs.using value set to node16."},
+      {"key": "D", "text": "The action.yml metadata file references a package.json file."}
+    ],
+    "correct_answers": ["C"]
+  },
+  {
+    "question_number": 71,
+    "question": "As a developer, your Actions workflow often reuses the same outputs or downloaded dependencies from one run to another. To cache dependencies for a job, you are using the GitHub cache action. Which input parameters are required for this action? (Each correct answer presents part of the solution. Choose two.)",
+    "answers": [
+      {"key": "A", "text": "path: the file path on the runner to cache or restore"},
+      {"key": "B", "text": "dependency: the name and version of a package to cache or restore"},
+      {"key": "C", "text": "key: the key created when saving a cache and the key used to search for a cache"},
+      {"key": "D", "text": "restore-keys: the copy action key used with cache parameter to cache the data"},
+      {"key": "E", "text": "cache-hit: the copy action key used with restore parameter to restore the data from the cache"},
+      {"key": "F", "text": "ref: the ref name of the branch to access and restore a cache created"}
+    ],
+    "correct_answers": ["A", "C"]
+  },
+  {
+    "question_number": 72,
+    "question": "As a developer, how can you identify a composite action on GitHub?",
+    "answers": [
+      {"key": "A", "text": "The action’s repository name includes the keyword “composite.”"},
+      {"key": "B", "text": "The action’s repository includes an init.sh file in the root directory."},
+      {"key": "C", "text": "The action’s repository includes Dockerfile and package.json files."},
+      {"key": "D", "text": "The action.yml metadata file has the runs.using value set to composite."}
+    ],
+    "correct_answers": ["D"]
+  },
+  {
+    "question_number": 73,
+    "question": "What can be used to set a failed status of an action from its code?",
+    "answers": [
+      {"key": "A", "text": "JavaScript dist/ folder"},
+      {"key": "B", "text": "composite run step"},
+      {"key": "C", "text": "output variable"},
+      {"key": "D", "text": "a non-zero exit code"},
+      {"key": "E", "text": "Dockerfile CMD"},
+      {"key": "F", "text": "@actions/github toolkit"}
+    ],
+    "correct_answers": ["D"]
+  },
+  {
+    "question_number": 74,
+    "question": "As a developer, you need to use GitHub Actions to deploy a microservice that requires runtime access to a secure token. This token is used by a variety of other microservices managed by different teams in different repos. To minimize management overhead and ensure the token is secure, which mechanisms should you use to store and access the token? (Each correct answer presents a complete solution. Choose two.)",
+    "answers": [
+      {"key": "A", "text": "Store the token as a GitHub encrypted secret in the same repo as the code. During deployment, use GitHub Actions to store the secret in an environment variable that can be accessed at runtime."},
+      {"key": "B", "text": "Use a corporate non-GitHub secret store (e.g., HashiCorp Vault) to store the token. During deployment, use GitHub Actions to store the secret in an environment variable that can be accessed at runtime."},
+      {"key": "C", "text": "Store the token as an organizational-level encrypted secret in GitHub. During deployment, use GitHub Actions to store the secret in an environment variable that can be accessed at runtime."},
+      {"key": "D", "text": "Store the token as a GitHub encrypted secret in the same repo as the code. Create a reusable custom GitHub Action to access the token by the microservice at runtime."},
+      {"key": "E", "text": "Store the token in a configuration file in a private repository. Use GitHub Actions to deploy the configuration file to the runtime environment."}
+    ],
+    "correct_answers": ["B", "C"]
+  },
+  {
+    "question_number": 75,
+    "question": "Which of the following statements are true regarding the use of GitHub Actions on a GitHub Enterprise Server instance? (Each correct answer presents a complete solution. Choose three.)",
+    "answers": [
+      {"key": "A", "text": "Actions created by GitHub are automatically available and cannot be disabled."},
+      {"key": "B", "text": "Third-party actions can be used on GitHub Enterprise Server by configuring GitHub Connect."},
+      {"key": "C", "text": "Most GitHub-authored actions are automatically bundled for use on GitHub Enterprise Server."},
+      {"key": "D", "text": "Use of GitHub Actions on GitHub Enterprise Server requires a persistent internet connection."},
+      {"key": "E", "text": "Actions must be defined in the .github repository."},
+      {"key": "F", "text": "Third-party actions can be manually synchronized for use on GitHub Enterprise Server."}
+    ],
+    "correct_answers": ["B", "C", "F"]
+  },
+  {
+    "question_number": 76,
+    "question": "In the following workflow file, line 5 interprets lines 3 and 4 as Python.\n\nWhich of the following is a valid option to complete line 5?\n\n1. steps:\n2. - run: |\n3.   import os\n4.   print(os.environ['PATH'])\n5. << insert snippet here >>",
+    "answers": [
+      {"key": "A", "text": "shell: python"},
+      {"key": "B", "text": "working-directory: .github/python"},
+      {"key": "C", "text": "shell: bash"},
+      {"key": "D", "text": "with: python"}
+    ],
+    "correct_answers": ["A"]
+  },
+  {
+    "question_number": 77,
+    "question": "As a developer, you need to make sure that only actions from trusted sources are available for use in your GitHub Enterprise Cloud organization. Which of the following statements are true? (Each correct answer presents a complete solution. Choose three.)",
+    "answers": [
+      {"key": "A", "text": "Actions can be published to an internal marketplace."},
+      {"key": "B", "text": "GitHub-verified actions can be collectively enabled for use in the enterprise."},
+      {"key": "C", "text": "Specific actions can individually be enabled for the organization, including version information."},
+      {"key": "D", "text": "Actions can be restricted to only those available in the enterprise."},
+      {"key": "E", "text": "Individual third-party actions enabled with a specific tag will prevent updated versions of the action from introducing vulnerabilities."},
+      {"key": "F", "text": "Actions created by GitHub are automatically enabled and cannot be disabled."}
+    ],
+    "correct_answers": ["A", "B", "C"]
+  },
+  {
+    "question_number": 78,
+    "question": "As a developer, you created a JavaScript action. What is the best way to test your JavaScript action?",
+    "answers": [
+      {"key": "A", "text": "Create a workflow that only executes your specific JavaScript action."},
+      {"key": "B", "text": "Package your JavaScript action inside a docker container image and run it."},
+      {"key": "C", "text": "Use a tool called @vercel/ncc to compile your code."},
+      {"key": "D", "text": "Create a workflow that includes the actions/debug-javascript action."}
+    ],
+    "correct_answers": ["A"]
+  },
+  {
+    "question_number": 79,
+    "question": "When reviewing an action for use, what file defines its available inputs and outputs?",
+    "answers": [
+      {"key": "A", "text": "inputs.yml"},
+      {"key": "B", "text": "defaults.json"},
+      {"key": "C", "text": "workflow.yml"},
+      {"key": "D", "text": "config.json"},
+      {"key": "E", "text": "action.yml"}
+    ],
+    "correct_answers": ["E"]
+  },
+  {
+    "question_number": 80,
+    "question": "Which files are required for a Docker container action in addition to the source code? (Each correct answer presents a partial solution. Choose two.)",
+    "answers": [
+      {"key": "A", "text": "action.yml"},
+      {"key": "B", "text": "Actionfile"},
+      {"key": "C", "text": "metadata.yml"},
+      {"key": "D", "text": "Dockerfile"}
+    ],
+    "correct_answers": ["A", "D"]
+  },
+  {
+    "question_number": 81,
+    "question": "As a developer, you have configured an IP allow list on a GitHub organization. Which effects does the IP allow list have on GitHub Actions? (Each answer presents a complete solution. Choose two.)",
+    "answers": [
+      {"key": "A", "text": "You can use standard GitHub-hosted runners since their IP addresses are automatically allowed."},
+      {"key": "B", "text": "You can use self-hosted runners with known IP addresses."},
+      {"key": "C", "text": "You must allow GitHub Actions’s IP address ranges in order to use marketplace actions."},
+      {"key": "D", "text": "You can use GitHub-hosted larger runners since they can be configured with static IP addresses."}
+    ],
+    "correct_answers": ["B", "C"]
+  },
+  {
+    "question_number": 82,
+    "question": "You have exactly one Windows x64 self-hosted runner, and it is configured with custom tools. Which syntax could you use in the workflow to target that runner?",
+    "answers": [
+      {"key": "A", "text": "runs-on: [self-hosted, windows, x64]"},
+      {"key": "B", "text": "self-hosted: [windows-x64]"},
+      {"key": "C", "text": "runs-on: windows-latest"},
+      {"key": "D", "text": "self-hosted: [windows, x64]"}
+    ],
+    "correct_answers": ["A"]
+  },
+  {
+    "question_number": 83,
+    "question": "As a developer, which workflow steps should you perform to publish an image to the GitHub Container Registry? (Each correct answer represents part of the solution. Choose three).",
+    "answers": [
+      {"key": "A", "text": "Push the image to the GitHub Container Registry."},
+      {"key": "B", "text": "Authenticate to the GitHub Container Registry."},
+      {"key": "C", "text": "Use the actions/setup-docker action."},
+      {"key": "D", "text": "Pull the image from the GitHub Container Registry."},
+      {"key": "E", "text": "Build the container image."}
+    ],
+    "correct_answers": ["A", "B", "E"]
+  },
+  {
+    "question_number": 84,
+    "question": "While writing a custom action, some behavior within the runner must be changed. Which workflow commands would set an error message in the runner’s output? (Each correct answer presents a complete solution. Choose two.)",
+    "answers": [
+      {"key": "A", "text": "echo \"::error file=main.py,line=10,col=15::There was an error\""},
+      {"key": "B", "text": "echo \"::error=There was an error::\""},
+      {"key": "C", "text": "echo \"::error::There was an error\""},
+      {"key": "D", "text": "echo \"::error message=There was an error::\""}
+    ],
+    "correct_answers": ["A", "C"]
+  },
+  {
+    "question_number": 85,
+    "question": "Which action type should be used to bundle a series of run steps into a reusable custom action?",
+    "answers": [
+      {"key": "A", "text": "Composite action"},
+      {"key": "B", "text": "Bash script action"},
+      {"key": "C", "text": "Docker container action"},
+      {"key": "D", "text": "JavaScript action"}
+    ],
+    "correct_answers": ["A"]
+  },
+  {
+    "question_number": 86,
+    "question": "What metadata file in a custom action defines the main entry point?",
+    "answers": [
+      {"key": "A", "text": "main.yml"},
+      {"key": "B", "text": "action.yml"},
+      {"key": "C", "text": "action.js"},
+      {"key": "D", "text": "index.js"}
+    ],
+    "correct_answers": ["B"]
+  },
+  {
+    "question_number": 87,
+    "question": "Which workflow command would output the debug message \"action successfully debugged\"?",
+    "answers": [
+      {"key": "A", "text": "echo \"::debug::action successfully debugged\""},
+      {"key": "B", "text": "echo \"::debug::message=action successfully debugged\""},
+      {"key": "C", "text": "echo \"debug=action successfully debugged\""},
+      {"key": "D", "text": "echo \":debug:action successfully debugged:\""}
+    ],
+    "correct_answers": ["A"]
+  },
+  {
+    "question_number": 88,
+    "question": "What is a role of GitHub Marketplace when using GitHub Actions workflows?",
+    "answers": [
+      {"key": "A", "text": "GitHub Marketplace is used to manage secrets and environment variables for workflows."},
+      {"key": "B", "text": "GitHub Marketplace enables users to publish their own workflows and discover workflows created by others."},
+      {"key": "C", "text": "GitHub Marketplace provides a platform for hosting private workflows shared only within an organization."},
+      {"key": "D", "text": "GitHub Marketplace is used to run workflows on a specified schedule."}
+    ],
+    "correct_answers": ["B"]
+  },
+   {
+    "question_number": 89,
+    "question": "What is the minimal syntax for declaring an output named foo for an action?",
+    "answers": [
+      {"key": "A", "text": "outputs:\n  foo:\n    value: Some value"},
+      {"key": "B", "text": "outputs:\n  - key: foo\n    value: Some value"},
+      {"key": "C", "text": "outputs:\n  foo:\n    description: Some value"},
+      {"key": "D", "text": "outputs:\n  - key: foo\n    description: Some value"}
+    ],
+    "correct_answers": ["A"]
+  },
+
+
+
+
+  {
+    "question_number": 90,
+    "question": "You need to perform a task that requires running a custom script in a GitHub Actions workflow. The script must run within the workflow environment without requiring an external container or prebuilt image. What should you use?",
+    "answers": [
+      {"key": "A", "text": "a run step"},
+      {"key": "B", "text": "a JavaScript action"},
+      {"key": "C", "text": "a composite action"},
+      {"key": "D", "text": "a Docker container action"}
+    ],
+    "correct_answers": ["A"]
+  },
+  {
+    "question_number": 91,
+    "question": "As a developer, you are using a Docker container action in your workflow. What is required for the action to run successfully?",
+    "answers": [
+      {"key": "A", "text": "The job env must be set to a Linux environment."},
+      {"key": "B", "text": "The action must be published to the GitHub Marketplace."},
+      {"key": "C", "text": "The referenced action must be hosted on Docker Hub."},
+      {"key": "D", "text": "The job runs-on must specify a Linux machine with Docker installed."}
+    ],
+    "correct_answers": ["D"]
+  },
+  {
+    "question_number": 92,
+    "question": "A development team has been using a Powershell script to compile and package their solution using existing tools on a Linux VM, which has been configured as a self-hosted runner. They would like to use the script as-is in an automated workflow. Which of the following should they do to invoke their script within a workflow step?",
+    "answers": [
+      {"key": "A", "text": "Use the YAML shell: pwsh in a run step."},
+      {"key": "B", "text": "Configure a self-hosted runner on Windows with the requested tools."},
+      {"key": "C", "text": "Use the actions/run-powershell action to invoke the script."},
+      {"key": "D", "text": "Use the YAML powershell: step."},
+      {"key": "E", "text": "Run the pwsh2bash command to convert the script so it can be run on Linux."}
+    ],
+    "correct_answers": ["A"]
+  },
+  {
+    "question_number": 93,
+    "question": "Which choices represent best practices for publishing actions so that they can be consumed reliably? (Each correct answer presents a complete solution. Choose two.)",
+    "answers": [
+      {"key": "A", "text": "default branch"},
+      {"key": "B", "text": "commit SHA"},
+      {"key": "C", "text": "repo name"},
+      {"key": "D", "text": "tag"},
+      {"key": "E", "text": "organization name"}
+    ],
+    "correct_answers": ["B", "D"]
+  },
+  {
+    "question_number": 94,
+    "question": "What is a valid scenario regarding environment secrets?",
+    "answers": [
+      {"key": "A", "text": "configuring environment secrets for connecting to GitHub Enterprise Server"},
+      {"key": "B", "text": "configuring environment secrets to automatically pull from Azure Key Vault"},
+      {"key": "C", "text": "ensuring a job cannot access environment secrets until approval is obtained from a required reviewer"},
+      {"key": "D", "text": "ensuring only a specific step can access an environment secret"}
+    ],
+    "correct_answers": ["C"]
+  },
+  {
+    "question_number": 95,
+    "question": "What are two reasons to keep an action in its own repository instead of bundling it with other application code? (Each correct answer presents a complete solution. Choose two.)",
+    "answers": [
+      {"key": "A", "text": "It makes the action.yml file optional."},
+      {"key": "B", "text": "It makes it easier for the GitHub community to discover the action."},
+      {"key": "C", "text": "It widens the scope of the code base for developers fixing issues and extending the action."},
+      {"key": "D", "text": "It decouples the action’s versioning from the versioning of other application code."},
+      {"key": "E", "text": "It allows sharing workflow secrets with other users."}
+    ],
+    "correct_answers": ["B", "D"]
+  },
+  {
+    "question_number": 96,
+    "question": "As a developer, you are authoring a workflow that will deploy to both DevCloud and TestCloud resources. Each cloud resource is accessed with a different deployment key. Which approach best allows you to use the same reusable workflow in separate jobs to target the different cloud resources?",
+    "answers": [
+      {"key": "A", "text": "Populate a DEPLOY_KEY repository secret with a JSON object containing DevCloud and TestCloud properties. Then specify DEPLOY_KEY.DevCloud in the secrets sections of the reusable workflow."},
+      {"key": "B", "text": "Use a marketplace action to conditionally parse the DEPLOY_KEY repository secret based on the cloud resource name."},
+      {"key": "C", "text": "Store the different keys in a DEPLOY_KEY environment secret in the DevCloud and TestCloud environments. Specify DEPLOY_KEY in the secrets section of the reusable workflow."},
+      {"key": "D", "text": "Create repository secrets named DevCloud.DEPLOY_KEY and TestCloud.DEPLOY_KEY so that the reusable workflow parses the secrets by resource name."}
+    ],
+    "correct_answers": ["C"]
+  },
+  {
+    "question_number": 97,
+    "question": "GitHub-hosted runners support which capabilities? (Each correct answer presents a complete solution. Choose two.)",
+    "answers": [
+      {"key": "A", "text": "support for Linux, Windows, and macOS"},
+      {"key": "B", "text": "support for a variety of Linux variations including CentOS, Fedora, and Debian"},
+      {"key": "C", "text": "requiring a payment mechanism (e.g., credit card) to use for private repositories"},
+      {"key": "D", "text": "automatic file-system caching between workflow runs"},
+      {"key": "E", "text": "automatic patching of both the runner and the underlying OS"}
+    ],
+    "correct_answers": ["A", "E"]
+  },
+  {
+    "question_number": 98,
+    "question": "An organization’s policies specify only local actions are allowed. How should actions be distributed for this organization?",
+    "answers": [
+      {"key": "A", "text": "via a repository owned by a third party"},
+      {"key": "B", "text": "via repositories owned by the organization"},
+      {"key": "C", "text": "via the GitHub Marketplace"},
+      {"key": "D", "text": "via the .github repository owned by the organization"}
+    ],
+    "correct_answers": ["B"]
+  },
+  {
+    "question_number": 99,
+    "question": "A single secret must be accessed by workflows in specific repositories. What is the best way to create the secret?",
+    "answers": [
+      {"key": "A", "text": "Create an environment secret at the organization level and leverage that environment in each of the specified repositories."},
+      {"key": "B", "text": "Create an organization secret, specify Selected repositories as the Repository access, and select the required repositories."},
+      {"key": "C", "text": "Create the secret in one of the repositories, check the Share secret option, and select the required repositories."},
+      {"key": "D", "text": "Store the secret in a supported external key vault. Configure OpenID Connect (OIDC) to allow access to the external vault and link the secret from the external key vault in each of the specific repositories."}
+    ],
+    "correct_answers": ["B"]
+  },
+  {
+    "question_number": 100,
+    "question": "What are the most significant advantages of adding documentation while distributing custom actions? (Each answer presents a complete solution. Choose two.)",
+    "answers": [
+      {"key": "A", "text": "It generates auto completion when using the action in a workflow."},
+      {"key": "B", "text": "It shares the description of the action to the users."},
+      {"key": "C", "text": "It provides an example of the action."},
+      {"key": "D", "text": "It creates a readme.md for the consuming workflow."}
+    ],
+    "correct_answers": ["B", "C"]
+  },
+  {
+    "question_number": 101,
+    "question": "A workflow that had been working now stalls in a waiting state until failing. The workflow file process-ml.yaml has not changed and contains jobs specifying runs-on: [gpu ]. Which of the following steps would troubleshoot the issue? (Each answer presents a complete solution. Choose two.)",
+    "answers": [
+      {"key": "A", "text": "Review the contents of the Runner_*.log files in the _diag folder."},
+      {"key": "B", "text": "Increase the usage limits for the GitHub-hosted runners."},
+      {"key": "C", "text": "Check the “Set up job” step for the logs of the last successful run to determine the runner."},
+      {"key": "D", "text": "Update the org settings to enable GPU-based GitHub-hosted runners."},
+      {"key": "E", "text": "Rotate the GITHUB_TOKEN secret for the appropriate runners."}
+    ],
+    "correct_answers": ["A", "C"]
+  },
+  {
+    "question_number": 102,
+    "question": "Your organization needs to simplify reusing and maintaining automation in your GitHub Enterprise Cloud. Which components can be directly reused across all repositories in an organization? (Each correct answer presents a complete solution. Choose three.)",
+    "answers": [
+      {"key": "A", "text": "actions stored in an organizational partition in the GitHub Marketplace"},
+      {"key": "B", "text": "custom Docker actions stored in GitHub Container Registry"},
+      {"key": "C", "text": "self-hosted runners"},
+      {"key": "D", "text": "encrypted secrets"},
+      {"key": "E", "text": "workflow templates"},
+      {"key": "F", "text": "actions stored in private repositories in the organization"}
+    ],
+    "correct_answers": ["C", "E", "F"]
+  },
+  {
+    "question_number": 103,
+    "question": "Which of the following is the best way for an enterprise to prevent certain marketplace actions from running?",
+    "answers": [
+      {"key": "A", "text": "Create a list of the actions that are restricted from being used as an enterprise policy. Every other action can be run."},
+      {"key": "B", "text": "It is not possible; if an action is in the marketplace, its use cannot be restricted."},
+      {"key": "C", "text": "Create a list that is maintained as a . yml file in a . github repository specified in the enterprise. Only these actions can be run."},
+      {"key": "D", "text": "Create a list of the actions that are allowed to run as an enterprise policy. Only these actions can be run."}
+    ],
+    "correct_answers": ["D"]
+  },
+  {
+    "question_number": 104,
+    "question": "When creating and managing custom actions in an enterprise setting, which of the following is considered a best practice?",
+    "answers": [
+      {"key": "A", "text": "creating a separate repository for each action so that the version can be managed independently"},
+      {"key": "B", "text": "creating a separate branch in application repositories that only contains the actions"},
+      {"key": "C", "text": "creating a single repository for all custom actions so that the versions for each action are all the same"},
+      {"key": "D", "text": "including custom actions that other teams need to reference in the same repository as application code"}
+    ],
+    "correct_answers": ["A"]
+  },
+  {
+    "question_number": 105,
+    "question": "You need to recommend a strategy for managing and leveraging reusable GitHub Actions workflows across multiple repositories in a large organization. What should you recommend?",
+    "answers": [
+      {"key": "A", "text": "Store reusable workflows in a central repository and reference the workflows by using the uses: syntax."},
+      {"key": "B", "text": "Require each development team to publish their workflows to GitHub Marketplace before reuse."},
+      {"key": "C", "text": "Copy the same workflow YAML file to the .github/workflows folder of each repository."},
+      {"key": "D", "text": "Tag each version of a workflow and ask each development team to clone the repository for manual updates."}
+    ],
+    "correct_answers": ["A"]
+  },
+  {
+    "question_number": 106,
+    "question": "You need to pass values from a runner to other parts of a GitHub Actions workflow. Which two actions should you perform? Each correct answer presents a complete solution.",
+    "answers": [
+      {"key": "A", "text": "Set a debug message."},
+      {"key": "B", "text": "Read from the environment variables."},
+      {"key": "C", "text": "Configure the output parameters."},
+      {"key": "D", "text": "Create environment variables by writing to the GITHUB_ENV file."}
+    ],
+    "correct_answers": ["C", "D"]
+  },
+  {
+    "question_number": 107,
+    "question": "As a developer, what two options should you recommend to implement standards for automation reuse? Each correct answer presents a complete solution.",
+    "answers": [
+      {"key": "A", "text": "Create reusable actions and workflows that can be called from other workflows."},
+      {"key": "B", "text": "Create a marketplace partition to publish reusable automation for the company."},
+      {"key": "C", "text": "Store shared corporate actions in subfolders in a defined and documented internally accessible repository."},
+      {"key": "D", "text": "Create workflow templates and store them in the organization's .github repository."}
+    ],
+    "correct_answers": ["A", "D"]
+  },
+  {
+    "question_number": 108,
+    "question": "What is the best way to control access to secrets and environment variables in GitHub Actions workflows?",
+    "answers": [
+      {"key": "A", "text": "Use environment protection rules to control which workflows can access all the secrets."},
+      {"key": "B", "text": "Enable workflows that are triggered by external sources, have no restrictions, and are from public repositories to access required components automatically."},
+      {"key": "C", "text": "Use branch protection rules to prevent workflows from running on untrusted branches."},
+      {"key": "D", "text": "Use the GITHUB_TOKEN secret with read/write permissions to ensure that the workflows can access repository content and perform all the actions."}
+    ],
+    "correct_answers": ["A"]
+  },
+  {
+    "question_number": 109,
+    "question": "You need to store an API key in a GitHub repository. The solution must ensure that the key remains secure and can be used in a GitHub Actions workflow. What should you do?",
+    "answers": [
+      {"key": "A", "text": "Add the key as a plain text variable to the repository README file."},
+      {"key": "B", "text": "Commit the key to the repository in an .env file."},
+      {"key": "C", "text": "Use repository secrets to encrypt and store the key, and then reference the key in the workflow YAML file."},
+      {"key": "D", "text": "Store the key directly in the workflow YAML file under env:."}
+    ],
+    "correct_answers": ["C"]
+  },
+  {
+    "question_number": 110,
+    "question": "What are the two types of environment protection rules you can configure? Each correct answer presents a complete solution.",
+    "answers": [
+      {"key": "A", "text": "artifact storage"},
+      {"key": "B", "text": "wait timer"},
+      {"key": "C", "text": "branch protections"},
+      {"key": "D", "text": "required reviewers"}
+    ],
+    "correct_answers": ["B", "C"]
+  },
+  {
+    "question_number": 111,
+    "question": "As a developer, one of your workflows will require Xcode version 11.2 hosted on macOS Catalina (i.e., v10.15). You've already created and configured a self-hosted runner to conform to those requirements and registered it with your organization. What else should you do to ensure that the workflow accesses the correct runner instance? (Each answer presents a complete solution. Choose three.)",
+    "answers": [
+      {"key": "A", "text": "Create custom runner labels for macos-10.15 and xcode-11.2."},
+      {"key": "B", "text": "In the workflow, specify: runs-on: [ ${{groups.macos-10.15}}, ${{groups.xcode-11.2}} ]."},
+      {"key": "C", "text": "Assign the custom labels to the self-hosted runner."},
+      {"key": "D", "text": "In the workflow, specify: runs-on: [ self-hosted, macos-10.15, xcode-11.2 ]."},
+      {"key": "E", "text": "Add your runner to the appropriate runner groups."},
+      {"key": "F", "text": "Create runner groups named macos-10.15 and xcode-11.2."}
+    ],
+    "correct_answers": ["A", "C", "D"]
+  },
+  {
+    "question_number": 112,
+    "question": "What is the proper syntax to reference the system-provided run number variable?",
+    "answers": [
+      {"key": "A", "text": "${{var.GITHUB_RUN_NUMBER}}"},
+      {"key": "B", "text": "$GITHUB_RUN_NUMBER"},
+      {"key": "C", "text": "${{env.GITHUB_RUN_NUMBER}}"},
+      {"key": "D", "text": "$github.run_number"},
+      {"key": "E", "text": "${{GITHUB_RUN_NUMBER}}"}
+    ],
+    "correct_answers": ["C"]
+  }
+]

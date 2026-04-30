@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GitHub Actions Quiz</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="app">
+    <header>
+      <div class="header-inner">
+        <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="GitHub" class="logo" />
+        <div>
+          <h1>GitHub Actions Certification</h1>
+          <p class="subtitle">Practice Quiz · <span id="total-count"></span> questions</p>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <!-- START SCREEN -->
+      <div id="screen-start" class="screen active">
+        <div class="card start-card">
+          <h2>Ready to test your knowledge?</h2>
+          <p>This quiz covers GitHub Actions concepts including workflows, runners, secrets, and more. Select your answers and submit when you're done.</p>
+          <ul class="info-list">
+            <li>📋 Some questions have multiple correct answers</li>
+            <li>✅ You'll see your score at the end</li>
+            <li>🔄 You can retake the quiz anytime</li>
+          </ul>
+
+          <div class="quiz-options" id="quiz-options">
+            <div class="quiz-option-row">
+              <label class="quiz-option-label">
+                <span class="qopt-icon">📝</span>
+                <span>Questions</span>
+              </label>
+              <div class="qrange-controls">
+                <span class="qrange-label">From</span>
+                <input type="number" id="input-q-from" min="1" max="10" value="1" />
+                <span class="qrange-label">to</span>
+                <input type="number" id="input-q-to" min="1" max="10" value="10" />
+                <span id="q-count-display" class="q-count-display">(10)</span>
+              </div>
+            </div>
+            <div class="quiz-option-row">
+              <label class="quiz-option-label" for="input-q-pick">
+                <span class="qopt-icon">🎯</span>
+                <span>Pick from range</span>
+              </label>
+              <div class="qrange-controls">
+                <input type="number" id="input-q-pick" min="1" max="10" value="10" />
+                <span class="qrange-label">questions</span>
+              </div>
+            </div>
+            <div class="quiz-option-row">
+              <label class="quiz-option-label toggle-label" for="toggle-shuffle">
+                <span class="qopt-icon">🔀</span>
+                <span>Randomize question order</span>
+              </label>
+              <label class="toggle-switch">
+                <input type="checkbox" id="toggle-shuffle" />
+                <span class="toggle-track"><span class="toggle-thumb"></span></span>
+              </label>
+            </div>
+          </div>
+
+          <div class="file-load-area">
+            <label class="file-drop-zone" id="drop-zone">
+              <input type="file" id="json-file-input" accept=".json" />
+              <span class="file-icon">📂</span>
+              <span class="file-label">Load your own <strong>questions.json</strong></span>
+              <span class="file-hint">Click to browse or drag & drop</span>
+              <span id="file-name" class="file-name hidden"></span>
+            </label>
+            <p class="file-or">— or use the default questions —</p>
+          </div>
+
+          <div class="mode-selector">
+            <button id="btn-mode-exam" class="btn btn-mode active" data-mode="exam">
+              <span class="mode-icon">🎓</span>
+              <span class="mode-title">Exam Mode</span>
+              <span class="mode-desc">Answer all questions, then see results</span>
+            </button>
+            <button id="btn-mode-practice" class="btn btn-mode" data-mode="practice">
+              <span class="mode-icon">📖</span>
+              <span class="mode-title">Practice Mode</span>
+              <span class="mode-desc">Reveal the answer after each question</span>
+            </button>
+          </div>
+
+          <button id="btn-start" class="btn btn-primary btn-lg" disabled>Start Quiz</button>
+          <p id="load-error" class="load-error hidden"></p>
+        </div>
+      </div>
+
+      <!-- QUIZ SCREEN -->
+      <div id="screen-quiz" class="screen">
+        <div class="quiz-topbar">
+          <button id="btn-back" class="btn btn-secondary btn-back">← Back</button>
+          <span id="quiz-mode-label" class="quiz-mode-label"></span>
+        </div>
+        <div id="progress-bar-container">
+          <div id="progress-bar"></div>
+          <span id="progress-text"></span>
+        </div>
+        <div id="questions-container"></div>
+        <div class="submit-area">
+          <button id="btn-submit" class="btn btn-primary btn-lg">Submit Quiz</button>
+        </div>
+      </div>
+
+      <!-- RESULTS SCREEN -->
+      <div id="screen-results" class="screen">
+        <div class="card results-card">
+          <div id="score-circle">
+            <span id="score-percent"></span>
+          </div>
+          <h2 id="results-title"></h2>
+          <p id="results-subtitle"></p>
+          <div class="results-stats">
+            <div class="stat">
+              <span class="stat-value" id="stat-correct"></span>
+              <span class="stat-label">Correct</span>
+            </div>
+            <div class="stat">
+              <span class="stat-value" id="stat-wrong"></span>
+              <span class="stat-label">Incorrect</span>
+            </div>
+            <div class="stat">
+              <span class="stat-value" id="stat-total"></span>
+              <span class="stat-label">Total</span>
+            </div>
+          </div>
+          <div class="results-actions">
+            <button id="btn-review" class="btn btn-secondary">Review Answers</button>
+            <button id="btn-retake" class="btn btn-primary">Retake Quiz</button>
+          </div>
+        </div>
+
+        <!-- REVIEW SECTION -->
+        <div id="review-container" class="hidden"></div>
+      </div>
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
