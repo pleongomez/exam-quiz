@@ -129,4 +129,5 @@ Abre el navegador en la URL que indique la terminal (normalmente `http://localho
 
 ## 📝 Licencia
 
-Proyecto de uso libre para estudio y preparación de certificaciones.
+Proyecto de uso libre para estudio y preparación de certificaciones..
+
