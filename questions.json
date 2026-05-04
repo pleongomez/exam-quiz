@@ -720,7 +720,7 @@
       {"key": "D", "text": "It runs the workflow when an issue is created or edited, or when an issue or pull request comment is created."},
       {"key": "E", "text": "It throws a workflow syntax error, pointing to the types definition in issues event."}
     ],
-    "correct_answers": ["D"]
+    "correct_answers": ["C"]
   },
   {
     "question_number": 63,
@@ -1271,7 +1271,7 @@
       {"key": "C", "text": "branch protections"},
       {"key": "D", "text": "required reviewers"}
     ],
-    "correct_answers": ["B", "C"]
+    "correct_answers": ["B", "D"]
   },
   {
     "question_number": 111,
