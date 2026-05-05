@@ -20,6 +20,7 @@ const btnStart        = document.getElementById('btn-start');
 const btnSubmit       = document.getElementById('btn-submit');
 const btnRetake       = document.getElementById('btn-retake');
 const btnReview       = document.getElementById('btn-review');
+const btnWrong        = document.getElementById('btn-wrong');
 const btnBack         = document.getElementById('btn-back');
 const quizModeLabel   = document.getElementById('quiz-mode-label');
 const reviewContainer = document.getElementById('review-container');
@@ -308,12 +309,15 @@ function showResults() {
   }
 
   reviewContainer.classList.add('hidden');
+  reviewContainer.dataset.filter = '';
+  btnReview.textContent = 'Review Answers';
+  btnWrong.textContent  = 'Show Wrong Answers';
   showScreen('results');
 }
 
 // ── Review ────────────────────────────────
-function buildReview() {
-  reviewContainer.innerHTML = '<h3>Answer Review</h3>';
+function buildReview(wrongOnly = false) {
+  reviewContainer.innerHTML = wrongOnly ? '<h3>Wrong Answers</h3>' : '<h3>Answer Review</h3>';
 
   Object.keys(userAnswers).forEach(qnum => {
     const q = questions.find(q => q.question_number === parseInt(qnum));
@@ -323,6 +327,8 @@ function buildReview() {
     const isCorrect =
       selected.size === correctSet.size &&
       [...selected].every(k => correctSet.has(k));
+
+    if (wrongOnly && isCorrect) return;
 
     const card = document.createElement('div');
     card.className = `review-card ${isCorrect ? 'correct' : 'incorrect'}`;
@@ -420,14 +426,40 @@ btnRetake.addEventListener('click', () => {
 });
 
 btnReview.addEventListener('click', () => {
-  if (reviewContainer.classList.contains('hidden')) {
-    buildReview();
+  const isOpen = !reviewContainer.classList.contains('hidden');
+  const wasAll = reviewContainer.dataset.filter === 'all';
+  if (isOpen && wasAll) {
+    reviewContainer.classList.add('hidden');
+    reviewContainer.dataset.filter = '';
+    btnReview.textContent = 'Review Answers';
+  } else {
+    buildReview(false);
+    reviewContainer.dataset.filter = 'all';
     reviewContainer.classList.remove('hidden');
+    btnReview.textContent = 'Hide Review';
+    btnWrong.textContent = 'Show Wrong Answers';
+    reviewContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+});
+
+btnWrong.addEventListener('click', () => {
+  const currentFilter = reviewContainer.dataset.filter;
+  if (currentFilter === 'wrong') {
+    // Currently showing wrong only → switch to all
+    buildReview(false);
+    reviewContainer.dataset.filter = 'all';
+    reviewContainer.classList.remove('hidden');
+    btnWrong.textContent = 'Show Wrong Answers';
     btnReview.textContent = 'Hide Review';
     reviewContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
   } else {
-    reviewContainer.classList.add('hidden');
+    // Showing all or hidden → switch to wrong only
+    buildReview(true);
+    reviewContainer.dataset.filter = 'wrong';
+    reviewContainer.classList.remove('hidden');
+    btnWrong.textContent = 'Show All Answers';
     btnReview.textContent = 'Review Answers';
+    reviewContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 });
 
