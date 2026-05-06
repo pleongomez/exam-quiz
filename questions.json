@@ -1,4 +1,7 @@
-[ 
+﻿{
+  "exam_name": "GH-200: GitHub Actions",
+  "questions": 
+  [ 
     {
     "question_number": 1,
     "question": "How should you print a debug message in your workflow?",
@@ -1299,3 +1302,5 @@
     "correct_answers": ["C"]
   }
 ]
+}
+

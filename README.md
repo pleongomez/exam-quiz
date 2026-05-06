@@ -1,6 +1,6 @@
-# GitHub Actions Certification Quiz 🚀
+# Exam Quiz 🎓
 
-Aplicación web de tipo quiz interactivo para practicar y preparar la certificación de **GitHub Actions**. Permite cargar preguntas desde un fichero JSON, configurar el examen y obtener un resultado detallado al finalizar.
+Aplicación web de tipo quiz interactivo para practicar y preparar cualquier certificación. Permite cargar preguntas desde un fichero JSON, configurar el examen y obtener un resultado detallado al finalizar.
 
 ---
 
@@ -34,26 +34,33 @@ exam-quiz/
 
 ## 📋 Formato del fichero de preguntas
 
-El fichero `questions.json` (o cualquier fichero personalizado) debe ser un array de objetos con la siguiente estructura:
+El fichero `questions.json` (o cualquier fichero personalizado) debe seguir la siguiente estructura, con un objeto raíz que incluya el nombre del examen y el array de preguntas:
 
 ```json
-[
-  {
-    "question_number": 1,
-    "question": "¿Texto de la pregunta?",
-    "answers": [
-      { "key": "A", "text": "Opción A" },
-      { "key": "B", "text": "Opción B" },
-      { "key": "C", "text": "Opción C" }
-    ],
-    "correct_answers": ["A"],
-    "question_image": "https://url-opcional-de-imagen.png"
-  }
-]
+{
+  "exam_name": "Nombre del Examen",
+  "questions": [
+    {
+      "question_number": 1,
+      "question": "¿Texto de la pregunta?",
+      "answers": [
+        { "key": "A", "text": "Opción A" },
+        { "key": "B", "text": "Opción B" },
+        { "key": "C", "text": "Opción C" }
+      ],
+      "correct_answers": ["A"],
+      "question_image": "https://url-opcional-de-imagen.png"
+    }
+  ]
+}
 ```
+
+> ℹ️ **Compatibilidad:** También se acepta el formato legacy donde el fichero es directamente un array de preguntas (sin objeto raíz ni `exam_name`).
 
 | Campo | Tipo | Obligatorio | Descripción |
 |---|---|---|---|
+| `exam_name` | string | ✅ | Nombre del examen. Se muestra en el encabezado y en el título de la página |
+| `questions` | array | ✅ | Lista de preguntas del examen |
 | `question_number` | number | ✅ | Identificador único de la pregunta |
 | `question` | string | ✅ | Enunciado de la pregunta |
 | `answers` | array | ✅ | Lista de opciones con `key` y `text` |

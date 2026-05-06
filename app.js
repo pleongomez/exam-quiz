@@ -13,6 +13,7 @@ const screens = {
   results: document.getElementById('screen-results'),
 };
 const totalCountEl    = document.getElementById('total-count');
+const examTitleEl     = document.getElementById('exam-title');
 const progressBar     = document.getElementById('progress-bar');
 const progressText    = document.getElementById('progress-text');
 const questionsEl     = document.getElementById('questions-container');
@@ -46,11 +47,33 @@ const statTotal       = document.getElementById('stat-total');
 
 // ── Load data ─────────────────────────────
 function applyQuestions(data) {
-  if (!Array.isArray(data) || data.length === 0) throw new Error('The JSON must be a non-empty array of questions.');
-  if (!data[0].question || !data[0].answers || !data[0].correct_answers) {
+  // Support both plain array (legacy) and new { exam_name, Questions } format
+  let questionList, examName;
+  if (Array.isArray(data)) {
+    questionList = data;
+    examName = null;
+  } else if (data && Array.isArray(data.questions)) {
+    questionList = data.questions;
+    examName = data.exam_name || null;
+  } else {
+    throw new Error('Invalid format: expected an array or an object with a "Questions" array.');
+  }
+
+  if (questionList.length === 0) throw new Error('The JSON must contain at least one question.');
+  if (!questionList[0].question || !questionList[0].answers || !questionList[0].correct_answers) {
     throw new Error('Invalid format: each question must have "question", "answers" and "correct_answers".');
   }
-  questions = data;
+
+  questions = questionList;
+
+  // Update exam name in the UI
+  if (examName) {
+    examTitleEl.textContent = examName;
+    document.title = examName + ' · Quiz';
+  } else {
+    examTitleEl.textContent = 'GitHub Actions Certification';
+    document.title = 'GitHub Actions Quiz';
+  }
   totalCountEl.textContent = questions.length;
   // Update range inputs to match loaded questions
   inputQFrom.min = 1;  inputQFrom.max = questions.length;  inputQFrom.value = 1;
