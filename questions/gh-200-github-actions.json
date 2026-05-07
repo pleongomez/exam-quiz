@@ -261,7 +261,7 @@
       {"key": "E", "text": "In the workflow, specify: runs-on: [self-hosted, macos-10.15, xcode-11.2]."},
       {"key": "F", "text": "Assign the custom labels to the self-hosted runner."}
     ],
-    "correct_answers": ["A", "C", "F"]
+    "correct_answers": ["C", "E", "F"]
   },
   {
     "question_number": 23,
