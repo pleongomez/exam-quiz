@@ -746,6 +746,42 @@ main {
 /* ──────────────────────────────────────────
    FILE LOAD AREA
 ─────────────────────────────────────────── */
+/* Bank selector */
+.bank-selector-area {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.bank-selector-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.9rem;
+  color: var(--text);
+  white-space: nowrap;
+  min-width: 140px;
+}
+
+.bank-select {
+  flex: 1;
+  padding: 8px 12px;
+  border-radius: var(--radius);
+  border: 1.5px solid var(--border);
+  background: var(--surface2);
+  color: var(--text);
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: border-color 0.2s;
+  appearance: auto;
+}
+
+.bank-select:focus {
+  outline: none;
+  border-color: var(--accent2);
+}
+
 .file-load-area {
   margin-bottom: 20px;
 }

@@ -29,7 +29,19 @@
             <li>🔄 You can retake the quiz anytime</li>
           </ul>
 
-          <div class="quiz-options" id="quiz-options">
+
+
+          <div class="bank-selector-area">
+            <label class="bank-selector-label" for="select-bank">
+              <span class="qopt-icon">🗂️</span>
+              <span>Question Bank</span>
+            </label>
+            <select id="select-bank" class="bank-select">
+              <option value="">— Select a question bank —</option>
+            </select>
+          </div>
+
+                    <div class="quiz-options" id="quiz-options">
             <div class="quiz-option-row">
               <label class="quiz-option-label">
                 <span class="qopt-icon">📝</span>
@@ -66,6 +78,7 @@
           </div>
 
           <div class="file-load-area">
+            <p class="file-or">— or load your own JSON file —</p>
             <label class="file-drop-zone" id="drop-zone">
               <input type="file" id="json-file-input" accept=".json" />
               <span class="file-icon">📂</span>
@@ -73,7 +86,6 @@
               <span class="file-hint">Click to browse or drag & drop</span>
               <span id="file-name" class="file-name hidden"></span>
             </label>
-            <p class="file-or">— or use the default questions —</p>
           </div>
 
           <div class="mode-selector">

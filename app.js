@@ -2,7 +2,11 @@
    GitHub Actions Quiz · app.js
 ─────────────────────────────────────────── */
 
+// ── Question banks (loaded dynamically from the server) ──────────────────────
+let QUESTION_BANKS = [];
+
 let questions = [];
+let currentExamName = null; // set when a bank/file is loaded
 let quizMode = 'exam'; // 'exam' | 'practice'
 const userAnswers = {}; // { questionNumber: Set of selected keys }
 
@@ -25,6 +29,7 @@ const btnWrong        = document.getElementById('btn-wrong');
 const btnBack         = document.getElementById('btn-back');
 const quizModeLabel   = document.getElementById('quiz-mode-label');
 const reviewContainer = document.getElementById('review-container');
+const selectBank      = document.getElementById('select-bank');
 const jsonFileInput   = document.getElementById('json-file-input');
 const dropZone        = document.getElementById('drop-zone');
 const fileNameEl      = document.getElementById('file-name');
@@ -66,14 +71,9 @@ function applyQuestions(data) {
 
   questions = questionList;
 
-  // Update exam name in the UI
-  if (examName) {
-    examTitleEl.textContent = examName;
-    document.title = examName + ' · Quiz';
-  } else {
-    examTitleEl.textContent = 'GitHub Actions Certification';
-    document.title = 'GitHub Actions Quiz';
-  }
+  // Store exam name for use when quiz starts (header stays generic on start screen)
+  currentExamName = examName || null;
+
   totalCountEl.textContent = questions.length;
   // Update range inputs to match loaded questions
   inputQFrom.min = 1;  inputQFrom.max = questions.length;  inputQFrom.value = 1;
@@ -85,18 +85,41 @@ function applyQuestions(data) {
   loadErrorEl.classList.add('hidden');
 }
 
-async function loadDefaultQuestions() {
+async function fetchBanks() {
   try {
-    const res = await fetch('questions.json');
-    if (!res.ok) throw new Error('questions.json not found.');
+    const res = await fetch('/api/question-banks');
+    if (!res.ok) throw new Error('API not available');
+    QUESTION_BANKS = await res.json();
+  } catch {
+    // Fallback: keep QUESTION_BANKS empty, user must load manually
+    QUESTION_BANKS = [];
+  }
+}
+
+function populateBankSelector() {
+  QUESTION_BANKS.forEach((bank, i) => {
+    const opt = document.createElement('option');
+    opt.value = i;
+    opt.textContent = bank.label;
+    selectBank.appendChild(opt);
+  });
+}
+
+async function loadBank(index) {
+  const bank = QUESTION_BANKS[index];
+  if (!bank) return;
+  try {
+    const res = await fetch(bank.path);
+    if (!res.ok) throw new Error(`Could not load ${bank.path}`);
     const data = await res.json();
     applyQuestions(data);
-    fileNameEl.textContent = '✓ questions.json (default)';
-    fileNameEl.classList.remove('hidden');
-    dropZone.classList.add('loaded');
+    // Clear manual file indicator when a bank is selected
+    fileNameEl.classList.add('hidden');
+    dropZone.classList.remove('loaded');
+    loadErrorEl.classList.add('hidden');
   } catch (e) {
-    // Default file not available — user must load manually
-    btnStart.disabled = true;
+    showLoadError(e.message);
+    selectBank.value = '';
   }
 }
 
@@ -114,6 +137,7 @@ function handleFileLoad(file) {
       fileNameEl.textContent = `✓ ${file.name} (${questions.length} questions)`;
       fileNameEl.classList.remove('hidden');
       dropZone.classList.add('loaded');
+      selectBank.value = ''; // deselect bank when manual file is loaded
     } catch (err) {
       showLoadError(err.message || 'Could not parse the JSON file.');
     }
@@ -410,6 +434,14 @@ function escapeHtml(str) {
 btnStart.addEventListener('click', () => {
   buildQuiz();
   quizModeLabel.textContent = quizMode === 'practice' ? '📖 Practice Mode' : '🎓 Exam Mode';
+  // Show exam title in header while taking the quiz
+  if (currentExamName) {
+    examTitleEl.textContent = currentExamName;
+    document.title = currentExamName + ' · Quiz';
+  } else {
+    examTitleEl.textContent = 'Certification Quiz';
+    document.title = 'Exam Quiz';
+  }
   showScreen('quiz');
   // In practice mode the submit/score flow is hidden
   const submitArea = document.querySelector('.submit-area');
@@ -433,6 +465,8 @@ btnSubmit.addEventListener('click', () => {
 
 btnBack.addEventListener('click', () => {
   if (confirm('Go back to the start screen? Your current answers will be lost.')) {
+    examTitleEl.textContent = 'Certification Quiz';
+    document.title = 'Exam Quiz';
     showScreen('start');
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
@@ -524,6 +558,13 @@ inputQPick.addEventListener('input', () => {
   if (parseInt(inputQPick.value, 10) < 1) inputQPick.value = 1;
 });
 
+// ── Bank selector ────────────────────────
+selectBank.addEventListener('change', async () => {
+  const val = selectBank.value;
+  if (val === '') return;
+  await loadBank(parseInt(val, 10));
+});
+
 // ── File input & drag-and-drop ───────────
 jsonFileInput.addEventListener('change', () => {
   handleFileLoad(jsonFileInput.files[0]);
@@ -546,7 +587,10 @@ dropZone.addEventListener('drop', (e) => {
 });
 
 // ── Init ──────────────────────────────────
-(async () => {
-  await loadDefaultQuestions();
+(async () => {  await fetchBanks();  populateBankSelector();
+  if (QUESTION_BANKS.length > 0) {
+    selectBank.value = '0';
+    await loadBank(0);
+  }
   showScreen('start');
 })();
